@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CSS Generator</title>
+   <link rel="stylesheet" href="./cssgenator.css">
+   <script src="cssgenator.js"></script>
+</head>
+<body>
+
+  <h2>CSS Generator</h2>
+
+  <!-- Live Preview -->
+  <div id="preview" class="preview" style="color: black;">Live Preview</div>
+
+  <!-- Controls -->
+  <div class="form-grid">
+    <div class="form-group">
+      <label>Text</label>
+      <input id="text" type="text" placeholder="Enter text" onkeyup="handlekeypress(this)">
+    </div>
+    <div class="form-group">
+      <label>Text Color</label>
+      <input id="textColor" type="color" value="#303030" oninput="changetxtcolor(this)">
+    </div>
+    <div class="form-group">
+      <label>Background Color</label>
+      <input id="bgColor" type="color" value="#ffffff" oninput='changebgcolor(this)'>
+    </div>
+    <div class="form-group">
+      <label>Border Width</label>
+      <input id="borderWidth" type="number" placeholder="Border Width" oninput="handlebdwidth(this)">
+    </div>
+    <div class="form-group">
+      <label>Border Color</label>
+      <input id="borderColor" type="color" value="#ffffff" oninput="handlebdcolor(this)">
+    </div>
+    <div class="form-group">
+      <label>Border Radius</label>
+      <input id="borderRadius" type="number" placeholder="Border Radius" oninput="handlebdradius(this)">
+    </div>
+    <div class="form-group">
+      <label>Font Size</label>
+      <input id="fontSize" type="number" placeholder="Font Size" oninput="changeSize(this)">
+    </div>
+
+    <div class="form-group">
+      <label>Margin <span class="value" id="marginVal">10</span></label>
+      <input id="margin" type="range" min="0" max="100" value="0" oninput="changemargin(this)">
+    </div>
+    <div class="form-group">
+      <label>Padding <span class="value" id="paddingVal">10</span></label>
+      <input id="padding" type="range" min="0" max="100" value="0" oninput="changepadding(this)">
+    </div>
+    <div class="form-group">
+      <label>Shadow X <span class="value" id="shadowXVal">0</span></label>
+      <input id="shadowX" type="range" min="-100" max="100" value="0" oninput="changeshadowX(this)">
+    </div>
+    <div class="form-group">
+      <label>Shadow Y <span class="value" id="shadowYVal">0</span></label>
+      <input id="shadowY" type="range" min="-100" max="100" value="0" oninput="changeshadowY(this)">
+    </div>
+    <div class="form-group">
+      <label>Shadow Blur <span class="value" id="shadowBlurVal">0</span></label>
+      <input id="shadowBlur" type="range" min="0" max="100" value="0" oninput="changeshadowblur(this)">
+    </div>
+    <div class="form-group">
+      <label>Shadow Spread <span class="value" id="shadowSpreadVal">0</span></label>
+      <input id="shadowSpread" type="range" min="0" max="100" value="0" oninput="changeshadowspread(this)">
+    </div>
+    <div class="form-group">
+      <label>Shadow Color</label>
+      <input id="shadowColor" type="color" value="#502020" oninput="changeshadowcolor(this)">
+    </div>
+    <div class="form-gradient">
+      <label>Background Gradient</label>
+      <select name="Gradient" id="Gradient">
+        <option value="linear">Linear</option>
+        <option value="Radial">Radial</option>
+      </select>
+      <input type="color" id="color1" oninput="backgroundgradient(this)">
+      <input type="color" id="color2" oninput="backgroundgradient(this)">
+    </div>
+  </div>
+
+  <!-- Generated CSS Output -->
+  <div class="output">
+    <h4>Generated CSS:</h4>
+    <div id="cssOutput" placeholder="Generated CSS"></div>
+    <button class="btn" onclick="handlecopy()">Copy CSS</button>
+  </div>
+</body>
+</html>
+<!-- <script>
+  function backgroundgradient() 
+  {
+    var color1 = document.getElementById("color1").value
+    var color2 = document.getElementById("color2").value
+    document.getElementById("preview").style.background = "linear-gradient( to left," + color1 + ", " + color2 + ")";
+    result += "background-image: linear-gradient" + e.value + "<br>"
+    document.getElementById("cssOutput").innerHTML = result
+  }
+
+</script> -->
+<!-- <script> 
+   var shadowX = "2px"
+   var shadowy = "2px" 
+   var shadowColor = ""
+   var shadowBlur = "2px"
+   var shadowSpread = "50px" 
+   var result = ""
+    function handlekeypress(e)
+    {   
+        // console.log(e.value)
+        document.getElementById("preview").innerHTML = e.value
+    }
+    function changebgcolor(e)
+    {
+        document.getElementById("preview").style.background = e.value
+        result += "background-color::" + e.value + "<br>"
+        document.getElementById("cssOutput").innerHTML = result
+    }
+    function changetxtcolor(e)
+    {
+        document.getElementById("preview").style.color = e.value  
+        result += "Color:" + e.value + "<br>"
+        document.getElementById("cssOutput").innerHTML = result
+    }
+    function handlebdcolor(e)
+    {
+        document.getElementById("preview").style.border =  "2px solid " + e.value
+        result += "border-Color:" + e.value + "<br>"
+        document.getElementById("cssOutput").innerHTML = result
+    }
+    function handlebdwidth(e)
+    {
+        document.getElementById("preview").style.borderWidth = e.value + "px"
+        result += "border-width:" + e.value + "px" + "<br>"
+        document.getElementById("cssOutput").innerHTML = result
+    }
+    function handlebdradius(e)
+    {
+        document.getElementById("preview").style.borderRadius = e.value + "px"
+        result += "border-radius:" + e.value + "px" + "<br>"
+        document.getElementById("cssOutput").innerHTML = result
+    }
+    function changeSize(e)
+    {
+        document.getElementById("preview").style.fontSize = e.value + "px"
+        result += "font-size:" + e.value + "px" + "<br>"
+        document.getElementById("cssOutput").innerHTML = result
+         
+    }
+    function changemargin(e)
+    {
+        document.getElementById("preview").style.margin = e.value + "px"
+        result += "margin:" + e.value + "px" + "<br>"
+        document.getElementById("cssOutput").innerHTML = result
+    }
+    function changepadding(e)
+    {
+        document.getElementById("preview").style.padding = e.value + "px"
+        result += "padding:" + e.value + "px" + "<br>"
+        document.getElementById("cssOutput").innerHTML = result
+    }
+    function changeshadowX(e)
+    {
+        shadowX = e.value + "px"
+        document.getElementById("preview").style.boxShadow = `${shadowX} ${shadowy} ${shadowColor}`
+        result += "shadowX:" + e.value + "px" + "<br>"
+        document.getElementById("cssOutput").innerHTML = result
+    }
+    function changeshadowY(e) 
+    {
+        shadowy = e.value + "px" 
+        document.getElementById("preview").style.boxShadow = `${shadowX} ${shadowy} ${shadowColor}`
+        result += "shadowY:" + e.value + "px" + "<br>"
+        document.getElementById("cssOutput").innerHTML = result
+    }
+    function changeshadowblur(e)
+    { 
+        // var blr = e.value + "px"         
+        // document.getElementById("preview").style.boxShadow = "10px 20px "+ blr +" 0px pink"
+        shadowblur = e.value + "px"
+        document.getElementById("preview").style.boxShadow = `${shadowX} ${shadowy} ${shadowblur} ${shadowColor}`
+        result += "shadowblur:" + e.value + "px" + "<br>"
+        document.getElementById("cssOutput").innerHTML = result
+    }
+    function changeshadowspread(e)
+    {
+        shadowspread = e.value + "px"
+        document.getElementById("preview").style.boxShadow = `${shadowX} ${shadowy} ${shadowblur} ${shadowSpread} ${shadowColor} `
+        result += "shadow-spred:" + e.value + "px" + "<br>"
+        document.getElementById("cssOutput").innerHTML = result
+    }
+    function changeshadowcolor(e)
+    {
+         shadowColor = e.value
+        // document.getElementById("preview").style.boxShadow = e.value + " 0px 10px"
+        document.getElementById("preview").style.boxShadow = `${shadowX} ${shadowy}  ${shadowSpread} ${shadowColor} `
+        result += "shadow-color:" + e.value  + "<br>"
+        document.getElementById("cssOutput").innerHTML = result
+    }
+    function handlecopy()
+    {
+        navigator.clipboard.writeText(result)
+        alert("Copied to clipboard")
+    }
+</script> -->
